@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Briefing: Niuza x Moreira Imóveis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --txt:#1f2328; --sub:#59636e; --line:#d8dee4; --bg:#ffffff; --soft:#f6f8fa; --accent:#1f2328; --ok:#1a7f37; --warn:#9a6700; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--txt); font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-size:16px; line-height:1.5; }
+  .wrap { max-width:760px; margin:0 auto; padding:24px 18px 64px; }
+  header h1 { font-size:22px; margin:0 0 4px; }
+  header p { margin:0; color:var(--sub); font-size:14px; }
+  .meta { margin-top:14px; padding:12px 14px; background:var(--soft); border:1px solid var(--line); border-radius:8px; font-size:14px; color:var(--sub); }
+  .meta b { color:var(--txt); }
+  .progress { position:sticky; top:0; background:var(--bg); padding:10px 0; z-index:5; border-bottom:1px solid var(--line); margin:18px 0 8px; }
+  .bar { height:6px; background:var(--soft); border-radius:3px; overflow:hidden; border:1px solid var(--line); }
+  .bar > div { height:100%; width:0; background:var(--accent); transition:width .2s; }
+  .progress small { display:block; margin-top:6px; color:var(--sub); font-size:12px; }
+  section { margin-top:28px; }
+  section h2 { font-size:17px; margin:0 0 4px; padding-bottom:6px; border-bottom:2px solid var(--txt); }
+  section .intro { color:var(--sub); font-size:14px; margin:8px 0 6px; }
+  .q { margin:18px 0 0; }
+  .q label.t { display:block; font-weight:600; font-size:15px; margin-bottom:4px; }
+  .q .help { display:block; color:var(--sub); font-size:13px; margin-bottom:6px; }
+  input[type=text], input[type=date], textarea { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:6px; font:inherit; color:var(--txt); background:#fff; }
+  textarea { min-height:78px; resize:vertical; }
+  input:focus, textarea:focus { outline:2px solid var(--txt); outline-offset:1px; }
+  .opts { display:flex; flex-wrap:wrap; gap:8px; }
+  .opts label { display:flex; align-items:center; gap:6px; padding:7px 12px; border:1px solid var(--line); border-radius:20px; cursor:pointer; font-size:14px; user-select:none; }
+  .opts input { margin:0; }
+  .opts label.sel { border-color:var(--txt); background:var(--soft); font-weight:600; }
+  .checks label { display:flex; gap:8px; align-items:flex-start; padding:6px 0; font-size:14px; cursor:pointer; }
+  .checks input { margin-top:4px; }
+  .obra { border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin-top:16px; background:#fff; }
+  .obra h3 { margin:0 0 2px; font-size:15px; }
+  .obra .valor { color:var(--sub); font-size:13px; }
+  .send { margin-top:36px; padding:18px; border:1px solid var(--line); border-radius:10px; background:var(--soft); }
+  .send h2 { border:0; margin:0 0 6px; padding:0; font-size:17px; }
+  .btns { display:flex; flex-direction:column; gap:10px; margin-top:12px; }
+  .btn { display:block; text-align:center; padding:13px 16px; border-radius:8px; font-weight:600; text-decoration:none; border:1px solid var(--txt); background:var(--txt); color:#fff; font-size:15px; cursor:pointer; font-family:inherit; }
+  .btn.sec { background:#fff; color:var(--txt); }
+  .btn.dis { opacity:.45; pointer-events:none; }
+  .note { font-size:13px; color:var(--sub); margin-top:10px; }
+  .status { font-size:13px; margin-top:8px; min-height:18px; }
+  .status.ok { color:var(--ok); } .status.warn { color:var(--warn); }
+  pre#preview { white-space:pre-wrap; background:#fff; border:1px solid var(--line); border-radius:6px; padding:12px; font-size:13px; max-height:280px; overflow:auto; display:none; }
+  footer { margin-top:32px; color:var(--sub); font-size:12px; text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Briefing do cliente</h1>
+    <p>Processo nº 0821832-97.2026.8.14.0028, 1ª Vara Cível e Empresarial de Marabá/PA</p>
+    <div class="meta">
+      <b>Ação:</b> Niuza Martins Ferreira (curatelada, representada por Mariella Ferreira Rocha e José Ditino Rocha Junior) x Arsênio Moreira da Silva Filho / Moreira Filhos Imóveis.<br>
+      <b>Objetivo:</b> reunir as informações necessárias à defesa da imobiliária. Responda com o máximo de detalhe possível. Se não souber, marque "Não sei" ou escreva isso. Ao final, envie as respostas pelo WhatsApp.
+    </div>
+  </header>
+
+  <div class="progress"><div class="bar"><div id="pbar"></div></div><small id="ptxt">0 de 0 perguntas respondidas</small></div>
+
+  <form id="f" autocomplete="off"></form>
+
+  <div class="send">
+    <h2>Enviar respostas</h2>
+    <div>Revise e toque em um dos botões. Cada botão abre o WhatsApp com todas as respostas já escritas; é só confirmar o envio. Para mandar aos dois números, use os dois botões.</div>
+    <div class="btns">
+      <a id="btnColega" class="btn" href="#" target="_blank" rel="noopener">Enviar ao advogado do cliente</a>
+      <a id="btnAbrahao" class="btn" href="#" target="_blank" rel="noopener">Enviar cópia ao Dr. Abrahão Neto</a>
+      <button id="btnCopiar" class="btn sec" type="button">Copiar respostas</button>
+      <button id="btnVer" class="btn sec" type="button">Ver o texto que será enviado</button>
+    </div>
+    <div id="status" class="status"></div>
+    <pre id="preview"></pre>
+    <div class="note">Se o WhatsApp não abrir com o texto completo, use "Copiar respostas" e cole na conversa. As respostas ficam salvas apenas neste aparelho enquanto você preenche.</div>
+  </div>
+
+  <footer>Documento confidencial, protegido por sigilo profissional. Uso restrito à defesa no processo indicado.</footer>
+</div>
+
+<script>
+// Destinatários (DDI + DDD + número, só dígitos)
+const NUM_COLEGA = "559499730008";   // (94) 9973-0008, advogado do cliente
+const NUM_ABRAHAO = "5594991089454"; // (94) 9 9108-9454
+const PROC = "0821832-97.2026.8.14.0028";
+const STORE_KEY = "briefing_" + PROC;
+
+const SN = ["Sim", "Não", "Não sei"];
+
+const OBRAS = [
+  { id: "o1", t: "Obra 1: telhado, calhas, rufos e drenagem", v: "Recibo da Secundo Construções de 29/11/2024, R$ 41.621,75, prédio comercial da Folha 31 (ao lado da UFPA)" },
+  { id: "o2", t: "Obra 2: reforma da cobertura da loja da Folha 28", v: "Proposta 006-005-2025, R$ 44.443,75" },
+  { id: "o3", t: "Obra 3: reforma do prédio comercial da Folha 31 (Casa da Dona de Casa)", v: "Proposta 0010-002-2025, R$ 41.312,74" },
+  { id: "o4", t: "Obra 4: demolição e reconformação do prédio da Loja dos Importados", v: "Proposta 0012-002-2025, R$ 42.645,39" },
+];
+
+const BLOCOS = [
+  { id: "b0", titulo: "Identificação", qs: [
+    { id: "nome", t: "Nome de quem está respondendo", tipo: "text" },
+    { id: "funcao", t: "Relação com o caso", tipo: "radio", o: ["Arsênio (titular da imobiliária)", "Funcionário da imobiliária", "Advogado do cliente", "Outro"] },
+    { id: "data", t: "Data do preenchimento", tipo: "date" },
+  ]},
+  { id: "b1", titulo: "1. Ciência da ação e notificações", qs: [
+    { id: "q1_1", t: "O cliente já sabia que existe uma ação judicial contra ele (processo " + PROC + ")?", tipo: "radio", o: SN },
+    { id: "q1_2", t: "Recebeu alguma citação, intimação, carta do Fórum ou visita de oficial de justiça?", tipo: "radio", o: SN, det: "Se sim, quando e de que forma?" },
+    { id: "q1_3", t: "Recebeu a notificação de rescisão de 16/03/2026, entregue pelo Cartório Michels à esposa, Sra. Sônia Regina, em 15/04/2026?", tipo: "radio", o: SN, det: "O que fez depois de recebê-la? Respondeu por escrito?" },
+    { id: "q1_4", t: "Recebeu a notificação de 05/02/2026 da curadora Mariella pedindo contratos e documentos?", tipo: "radio", o: SN, det: "Respondeu? Em que data entregou os contratos de locação e por qual meio?" },
+  ]},
+  { id: "b2", titulo: "2. Contratos e curadores", qs: [
+    { id: "q2_1", t: "Desde quando a imobiliária administra os imóveis da Sra. Niuza?", tipo: "text" },
+    { id: "q2_2", t: "Existe contrato de administração assinado com o curador anterior (Sr. Sebastião Martins Ferreira)?", tipo: "radio", o: SN, det: "Data do contrato e se o cliente tem cópia." },
+    { id: "q2_3", t: "Quem são hoje os curadores da Sra. Niuza? Ainda são Mariella e José Ditino, ou houve nomeação de outro curador?", tipo: "textarea" },
+    { id: "q2_4", t: "Os curadores Mariella e José Ditino assinaram pessoalmente o contrato de 27/08/2024?", tipo: "radio", o: SN },
+    { id: "q2_5", t: "O que é o CNPJ 58.606.326/0001-47, que aparece nos contratos de locação mais recentes? Qual a relação com o CNPJ 13.720.790/0001-21?", tipo: "textarea" },
+  ]},
+  { id: "b3", titulo: "3. Obras nos imóveis", intro: "A ação acusa a imobiliária de ter retido R$ 170.023,58 sem autorização. Os valores coincidem com quatro obras da Secundo Construções. Responda para cada obra.", obras: true, qs: [
+    { id: "q3_1", t: "Qual a relação do cliente com a Secundo Construções? (sócio, parente, prestador habitual, nenhuma)", tipo: "textarea" },
+    { id: "q3_2", t: "Por que a Secundo Construções informa o mesmo endereço da imobiliária (Av. Antônio Maia, 1801-B)?", tipo: "textarea" },
+    { id: "q3_3", t: "Como a Secundo Construções foi escolhida? Houve outros orçamentos?", tipo: "textarea" },
+    { id: "q3_4", t: "Na medição da obra de telhado constam \"aporte\" de R$ 75.245,44 e \"saldo a receber\" de R$ 48.576,31. O que significam esses valores?", tipo: "textarea" },
+    { id: "q3_5", t: "Os curadores receberam os recibos e orçamentos? Sabe se usaram esses documentos na prestação de contas da curatela?", tipo: "textarea" },
+  ]},
+  { id: "b4", titulo: "4. Aluguéis e repasses", qs: [
+    { id: "q4_1", t: "A imobiliária continua recebendo os aluguéis dos imóveis da Sra. Niuza?", tipo: "radio", o: SN, det: "Quais imóveis ainda pagam à imobiliária?" },
+    { id: "q4_2", t: "Desde abril de 2026, os aluguéis recebidos foram repassados aos curadores?", tipo: "radio", o: ["Sim, todos", "Em parte", "Não", "Não sei"], det: "Para qual conta e com que frequência? Houve desconto da comissão de 10%?" },
+    { id: "q4_3", t: "O cliente tem os extratos da conta do Banco da Amazônia (ag. 0034, c/c 72174-0) desde junho de 2024?", tipo: "radio", o: SN },
+    { id: "q4_4", t: "Tem comprovantes de cada repasse feito à proprietária ou aos curadores desde junho de 2024?", tipo: "radio", o: SN },
+    { id: "q4_5", t: "Algum inquilino está ou esteve atrasado? A imobiliária ficou com multas e juros cobrados dos inquilinos?", tipo: "textarea" },
+  ]},
+  { id: "b5", titulo: "5. Inquilinos e cauções", qs: [
+    { id: "q5_1", t: "Quais inquilinos foram procurados pelos curadores para tratar da rescisão? Quando?", tipo: "textarea" },
+    { id: "q5_2", t: "O que os inquilinos responderam aos curadores?", tipo: "textarea" },
+    { id: "q5_3", t: "Existe prova dessa abordagem (mensagens, áudios, declaração dos inquilinos)?", tipo: "radio", o: SN, det: "Quais?" },
+    { id: "q5_4", t: "Onde estão as duas cauções de R$ 25.000,00 pagas pela locatária Carla Karoliny? Há outras cauções guardadas pela imobiliária?", tipo: "textarea" },
+  ]},
+  { id: "b6", titulo: "6. Acordo", qs: [
+    { id: "q6_1", t: "O cliente aceita negociar um acordo com os curadores?", tipo: "radio", o: SN },
+    { id: "q6_2", t: "Aceita entregar a administração com transição organizada dos contratos e das cauções?", tipo: "radio", o: ["Sim", "Sim, com condições", "Não", "Não sei"], det: "Quais condições?" },
+    { id: "q6_3", t: "Pretende cobrar a multa de 2 aluguéis da cláusula 6.4 pela rescisão antes do fim das locações?", tipo: "radio", o: ["Sim", "Só se não houver acordo", "Não", "Não sei"] },
+  ]},
+  { id: "b7", titulo: "7. Documentos que o cliente pode enviar", qs: [
+    { id: "docs", t: "Marque o que o cliente tem e pode enviar", tipo: "check", o: [
+      "Autorizações dos curadores para as obras (assinadas, e-mail ou WhatsApp)",
+      "Originais do recibo, propostas e medição da Secundo Construções",
+      "Notas fiscais, ART e fotos antes e depois das obras",
+      "Comprovantes de pagamento à Secundo Construções",
+      "Extratos da conta 72174-0 do Banco da Amazônia",
+      "Comprovantes de repasse à proprietária ou aos curadores",
+      "Contrato com o curador anterior",
+      "Contratos de locação e aditivos vigentes",
+      "Mensagens dos curadores com a imobiliária ou com os inquilinos",
+      "Resposta à notificação de 05/02/2026",
+    ]},
+    { id: "obs", t: "Observações finais ou fatos que não foram perguntados", tipo: "textarea" },
+  ]},
+];
+
+const form = document.getElementById("f");
+let state = {};
+try { state = JSON.parse(localStorage.getItem(STORE_KEY) || "{}"); } catch (e) { state = {}; }
+function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {} }
+
+function el(tag, attrs = {}, html) {
+  const e = document.createElement(tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+}
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+const COUNTED = [];
+
+function renderQ(q, parent) {
+  const box = el("div", { class: "q" });
+  box.appendChild(el("label", { class: "t", for: q.id }, esc(q.t)));
+  if (q.tipo === "text" || q.tipo === "date") {
+    const i = el("input", { type: q.tipo, id: q.id });
+    i.value = state[q.id] || "";
+    i.addEventListener("input", () => { state[q.id] = i.value; save(); upd(); });
+    box.appendChild(i); COUNTED.push(q.id);
+  } else if (q.tipo === "textarea") {
+    const t = el("textarea", { id: q.id });
+    t.value = state[q.id] || "";
+    t.addEventListener("input", () => { state[q.id] = t.value; save(); upd(); });
+    box.appendChild(t); COUNTED.push(q.id);
+  } else if (q.tipo === "radio") {
+    const o = el("div", { class: "opts", role: "radiogroup" });
+    q.o.forEach(opt => {
+      const lab = el("label");
+      const r = el("input", { type: "radio", name: q.id, value: opt });
+      if (state[q.id] === opt) { r.checked = true; lab.classList.add("sel"); }
+      r.addEventListener("change", () => {
+        state[q.id] = opt; save();
+        o.querySelectorAll("label").forEach(l => l.classList.remove("sel")); lab.classList.add("sel"); upd();
+      });
+      lab.appendChild(r); lab.appendChild(document.createTextNode(opt)); o.appendChild(lab);
+    });
+    box.appendChild(o); COUNTED.push(q.id);
+    if (q.det) {
+      const dk = q.id + "_det";
+      box.appendChild(el("span", { class: "help", style: "margin-top:8px" }, esc(q.det)));
+      const t = el("textarea", { id: dk, style: "min-height:56px" });
+      t.value = state[dk] || "";
+      t.addEventListener("input", () => { state[dk] = t.value; save(); });
+      box.appendChild(t);
+    }
+  } else if (q.tipo === "check") {
+    const c = el("div", { class: "checks" });
+    const cur = Array.isArray(state[q.id]) ? state[q.id] : [];
+    q.o.forEach(opt => {
+      const lab = el("label");
+      const x = el("input", { type: "checkbox", value: opt });
+      if (cur.includes(opt)) x.checked = true;
+      x.addEventListener("change", () => {
+        state[q.id] = [...c.querySelectorAll("input:checked")].map(i => i.value); save(); upd();
+      });
+      lab.appendChild(x); lab.appendChild(document.createTextNode(opt)); c.appendChild(lab);
+    });
+    box.appendChild(c); COUNTED.push(q.id);
+  }
+  parent.appendChild(box);
+}
+
+const OBRA_QS = (o) => [
+  { id: o.id + "_aut", t: "Os curadores autorizaram esta obra antes de ela começar?", tipo: "radio", o: SN, det: "Como autorizaram (assinatura, WhatsApp, e-mail, verbalmente)? Quem autorizou e quando?" },
+  { id: o.id + "_exec", t: "A obra foi executada e concluída?", tipo: "radio", o: ["Sim", "Em parte", "Não", "Não sei"] },
+  { id: o.id + "_pag", t: "Como e quando a Secundo Construções foi paga?", tipo: "textarea" },
+  { id: o.id + "_prova", t: "Existem nota fiscal, ART, fotos ou relatório desta obra?", tipo: "radio", o: SN },
+];
+
+BLOCOS.forEach(b => {
+  const s = el("section");
+  s.appendChild(el("h2", {}, esc(b.titulo)));
+  if (b.intro) s.appendChild(el("p", { class: "intro" }, esc(b.intro)));
+  if (b.obras) {
+    OBRAS.forEach(o => {
+      const card = el("div", { class: "obra" });
+      card.appendChild(el("h3", {}, esc(o.t)));
+      card.appendChild(el("div", { class: "valor" }, esc(o.v)));
+      OBRA_QS(o).forEach(q => renderQ(q, card));
+      s.appendChild(card);
+    });
+  }
+  b.qs.forEach(q => renderQ(q, s));
+  form.appendChild(s);
+});
+
+function answered(id) { const v = state[id]; return Array.isArray(v) ? v.length > 0 : !!(v && String(v).trim()); }
+
+function fmtVal(v) {
+  if (Array.isArray(v)) return v.length ? v.map(x => "  - " + x).join("\n") : "(sem resposta)";
+  return v && String(v).trim() ? String(v).trim() : "(sem resposta)";
+}
+
+function buildMsg() {
+  const L = [];
+  L.push("*BRIEFING DO CLIENTE*");
+  L.push("Processo " + PROC + " (Niuza x Moreira Imóveis)");
+  L.push("");
+  BLOCOS.forEach(b => {
+    L.push("*" + b.titulo + "*");
+    if (b.obras) {
+      OBRAS.forEach(o => {
+        L.push("_" + o.t + "_");
+        OBRA_QS(o).forEach(q => {
+          L.push(q.t + "\n> " + fmtVal(state[q.id]));
+          if (q.det && answered(q.id + "_det")) L.push("  Detalhe: " + state[q.id + "_det"].trim());
+        });
+      });
+    }
+    b.qs.forEach(q => {
+      L.push(q.t + "\n> " + fmtVal(state[q.id]));
+      if (q.det && answered(q.id + "_det")) L.push("  Detalhe: " + state[q.id + "_det"].trim());
+    });
+    L.push("");
+  });
+  return L.join("\n");
+}
+
+function waLink(num, msg) { return "https://wa.me/" + num + "?text=" + encodeURIComponent(msg); }
+
+const bColega = document.getElementById("btnColega");
+const bAbrahao = document.getElementById("btnAbrahao");
+const st = document.getElementById("status");
+
+function upd() {
+  const n = COUNTED.filter(answered).length, t = COUNTED.length;
+  document.getElementById("pbar").style.width = (t ? (100 * n / t) : 0) + "%";
+  document.getElementById("ptxt").textContent = n + " de " + t + " perguntas respondidas";
+  const msg = buildMsg();
+  if (NUM_COLEGA) { bColega.href = waLink(NUM_COLEGA, msg); bColega.classList.remove("dis"); }
+  else { bColega.href = "#"; bColega.classList.add("dis"); bColega.textContent = "Enviar ao advogado do cliente (número a configurar)"; }
+  bAbrahao.href = waLink(NUM_ABRAHAO, msg);
+  const pv = document.getElementById("preview");
+  if (pv.style.display === "block") pv.textContent = msg;
+}
+
+document.getElementById("btnCopiar").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(buildMsg()); st.className = "status ok"; st.textContent = "Respostas copiadas. Cole na conversa do WhatsApp."; }
+  catch (e) { const pv = document.getElementById("preview"); pv.style.display = "block"; pv.textContent = buildMsg(); st.className = "status warn"; st.textContent = "Não foi possível copiar automaticamente. Selecione o texto abaixo e copie."; }
+});
+document.getElementById("btnVer").addEventListener("click", () => {
+  const pv = document.getElementById("preview");
+  pv.style.display = pv.style.display === "block" ? "none" : "block";
+  pv.textContent = buildMsg();
+});
+[bColega, bAbrahao].forEach(b => b.addEventListener("click", () => {
+  if (COUNTED.filter(answered).length === 0) { st.className = "status warn"; st.textContent = "Nenhuma pergunta respondida ainda."; }
+}));
+
+upd();
+</script>
+</body>
+</html>
